@@ -10,6 +10,9 @@ const WithState = () => {
             <button onClick={() => setCount(count + 1)}>
                 Increment Count
             </button>
+            <button onClick={() => setCount(count>0 && count - 1)}>
+                Decrement Count
+            </button>
         </div>
     );
 };
