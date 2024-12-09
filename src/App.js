@@ -41,7 +41,7 @@ function App() {
                     <Route path="/state-example" element={
                         <div>
                             <Header />
-                            <Footer2 />
+                            <Footer />
                             
                             <h1>Understanding State in React</h1>
                             
