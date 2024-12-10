@@ -5,6 +5,10 @@ import WithState from './WithState';
 import WithoutState from './WithoutState';
 import './App.css';
 import Footer2 from './Footer2';
+import Calculator from './Calculator';
+import { useState } from 'react';
+
+
 
 // Home component
 const Home = () => (
@@ -35,42 +39,202 @@ const Details = () => (
     </div>
     );
 
-function App() {
-    return (
-        <Router>
-            <div className="App">
-                <nav>
-                    <ul>
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/about">About</Link></li>
-                        <li><Link to="/state-example">State Example</Link></li>
-                        <li><Link to="/details">Details</Link></li>
-                    </ul>
-                </nav>
-
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/state-example" element={
-                        <div>
-                            <Header />
-                            <Footer />
-                            
-                            <h1>Understanding State in React</h1>
-                            
-                            {/* Component using useState */}
-                            <WithState />
-                            
-                            {/* Component without useState */}
-                            <WithoutState />                                                       
-                        </div>
-                    } />
-                    <Route path="/details" element={<Details />} />
-                </Routes>
-                <Footer2 />
+    function App() {
+        const [isDarkTheme, setIsDarkTheme] = useState(false);
+    
+        const theme = {
+            light: {
+                background: '#f5f5dc',
+                text: '#333333',
+                border: '#ccc',
+                buttonBg: '#4CAF50',
+                buttonText: 'white',
+                inputBg: '#ffffff',
+                inputBorder: '#ccc',
+                navBg: '#f5f5dc',
+                navText: '#333',
+                navHoverBg: '#e9ecef',
+                navHoverText: '#000'
+            },
+            dark: {
+                background: '#2f4f4f',
+                text: '#ffffff',
+                border: '#555555',
+                buttonBg: '#1a8a1f',
+                buttonText: '#ffffff',
+                inputBg: '#444444',
+                inputBorder: '#666666',
+                navBg: '#2f4f4f',
+                navText: '#f8f9fa',
+                navHoverBg: '#495057',
+                navHoverText: '#ffffff'
+            }
+        };
+    
+        const currentTheme = isDarkTheme ? theme.dark : theme.light;
+    
+        return (
+            <div
+                style={{
+                    backgroundColor: currentTheme.background,
+                    color: currentTheme.text,
+                    minHeight: '100vh',
+                    transition: 'all 0.3s ease'
+                }}
+            >
+                <Router>
+                    <div className="App">
+                        <nav
+                            style={{
+                                backgroundColor: currentTheme.navBg,
+                                padding: '1rem',
+                                marginBottom: '2rem',
+                                transition: 'all 0.3s ease',
+                                border: `1px solid ${currentTheme.border}`,
+                            }}
+                        >
+                            <ul
+                                style={{
+                                    listStyleType: 'none',
+                                    padding: 0,
+                                    margin: 0,
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    gap: '2rem'
+                                }}
+                            >
+                                <li>
+                                    <Link
+                                        to="/"
+                                        style={{
+                                            textDecoration: 'none',
+                                            color: currentTheme.navText,
+                                            fontWeight: 500,
+                                            padding: '0.5rem 1rem',
+                                            borderRadius: '4px',
+                                            transition: 'background-color 0.3s'
+                                        }}
+                                        onMouseEnter={(e) => {
+                                            e.target.style.backgroundColor = currentTheme.navHoverBg;
+                                            e.target.style.color = currentTheme.navHoverText;
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            e.target.style.backgroundColor = 'transparent';
+                                            e.target.style.color = currentTheme.navText;
+                                        }}
+                                    >
+                                        Home
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        to="/about"
+                                        style={{
+                                            textDecoration: 'none',
+                                            color: currentTheme.navText,
+                                            fontWeight: 500,
+                                            padding: '0.5rem 1rem',
+                                            borderRadius: '4px',
+                                            transition: 'background-color 0.3s'
+                                        }}
+                                        onMouseEnter={(e) => {
+                                            e.target.style.backgroundColor = currentTheme.navHoverBg;
+                                            e.target.style.color = currentTheme.navHoverText;
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            e.target.style.backgroundColor = 'transparent';
+                                            e.target.style.color = currentTheme.navText;
+                                        }}
+                                    >
+                                        About
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        to="/state-example"
+                                        style={{
+                                            textDecoration: 'none',
+                                            color: currentTheme.navText,
+                                            fontWeight: 500,
+                                            padding: '0.5rem 1rem',
+                                            borderRadius: '4px',
+                                            transition: 'background-color 0.3s'
+                                        }}
+                                        onMouseEnter={(e) => {
+                                            e.target.style.backgroundColor = currentTheme.navHoverBg;
+                                            e.target.style.color = currentTheme.navHoverText;
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            e.target.style.backgroundColor = 'transparent';
+                                            e.target.style.color = currentTheme.navText;
+                                        }}
+                                    >
+                                        State Example
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        to="/details"
+                                        style={{
+                                            textDecoration: 'none',
+                                            color: currentTheme.navText,
+                                            fontWeight: 500,
+                                            padding: '0.5rem 1rem',
+                                            borderRadius: '4px',
+                                            transition: 'background-color 0.3s'
+                                        }}
+                                        onMouseEnter={(e) => {
+                                            e.target.style.backgroundColor = currentTheme.navHoverBg;
+                                            e.target.style.color = currentTheme.navHoverText;
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            e.target.style.backgroundColor = 'transparent';
+                                            e.target.style.color = currentTheme.navText;
+                                        }}
+                                    >
+                                        Details
+                                    </Link>
+                                </li>
+                            </ul>
+                        </nav>
+                        <h4>Change your Theme here</h4>
+                        <button
+                            onClick={() => setIsDarkTheme(!isDarkTheme)}
+                            style={{
+                                padding: '8px 15px',
+                                backgroundColor: currentTheme.buttonBg,
+                                color: currentTheme.buttonText,
+                                border: 'none',
+                                borderRadius: '4px',
+                                cursor: 'pointer'
+                            }}
+                        >
+                            {isDarkTheme ? '🌞 Light' : '🌙 Dark'}
+                        </button>
+    
+                        <Routes>
+                            <Route path="/" element={<Home />} />
+                            <Route path="/about" element={<About />} />
+                            <Route
+                                path="/state-example"
+                                element={
+                                    <div>
+                                        <Header />
+                                        <Footer />
+                                        <h1>Understanding State in React</h1>
+                                        <WithState />
+                                        <WithoutState />
+                                        <Calculator />
+                                    </div>
+                                }
+                            />
+                            <Route path="/details" element={<Details />} />
+                        </Routes>
+                        <Footer2 />
+                    </div>
+                </Router>
             </div>
-        </Router>
-    );
-}
-
-export default App;
+        );
+    }
+    
+    export default App;
